@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('user');
     }
 
     /**
@@ -37,7 +37,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('userShow', ['id' => $user->name]);
     }
 
     /**

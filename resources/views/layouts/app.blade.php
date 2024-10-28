@@ -14,13 +14,12 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body class="bg-gray-50 transition-all duration-300 lg:hs-overlay-layout-open:ps-[260px] dark:bg-neutral-900">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.sidebar')
 
-            <!-- Page Heading -->
             @isset($header)
-                <header class="bg-white shadow dark:bg-gray-800">
+                <header class="shadow dark:bg-gray-800">
                     <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -32,5 +31,6 @@
                 {{ $slot }}
             </main>
         </div>
+        <script src="./node_modules/preline/dist/preline.js"></script>
     </body>
 </html>

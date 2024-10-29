@@ -31,7 +31,7 @@
                                     <div class="inline-flex gap-x-2">
 
                                         <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg gap-x-2 hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                                            href="#">
+                                            href="{{ route('users.create') }}">
                                             <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
                                                 width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -39,7 +39,7 @@
                                                 <path d="M5 12h14" />
                                                 <path d="M12 5v14" />
                                             </svg>
-                                            Add user
+                                            Добавить
                                         </a>
                                     </div>
                                 </div>

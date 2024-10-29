@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -22,7 +23,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'Create User';
+        return view('users.formUser', compact('title'));
     }
 
     /**
@@ -30,7 +32,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'birthdate' => $request->birthdate,
+            'church' => $request->church,
+            'city' => $request->city
+        ]);
+
+        return redirect('users');
     }
 
     /**

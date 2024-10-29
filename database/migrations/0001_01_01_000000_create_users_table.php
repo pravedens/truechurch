@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('photo_profile')->nullable();
             $table->date('birthdate')->nullable();
-            $table->string('сhurch')->nullable();
+            $table->string('church')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

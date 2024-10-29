@@ -69,9 +69,9 @@
                                         </th>
 
                                         <th scope="col" class="px-6 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
+                                            <div class="flex items-center ml-5 gap-x-2">
                                                 <span
-                                                    class="ml-20 text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
                                                     Email
                                                 </span>
                                             </div>
@@ -89,7 +89,7 @@
                                         <th scope="col" class="px-6 py-3 text-start">
                                             <div class="flex items-center gap-x-2">
                                                 <span
-                                                    class="ml-4 text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
                                                     Церковь
                                                 </span>
                                             </div>
@@ -98,8 +98,8 @@
                                         <th scope="col" class="px-6 py-3 text-start">
                                             <div class="flex items-center gap-x-2">
                                                 <span
-                                                    class="ml-2 text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                    Created
+                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                    Город
                                                 </span>
                                             </div>
                                         </th>
@@ -109,6 +109,7 @@
                                 </thead>
 
                                 <tbody class="divide-y divide-gray-200">
+                                    @forelse ($users as $row)
                                     <tr>
                                         <td class="h-px w-72 whitespace-nowrap">
                                             <div class="px-6 py-3 ml-2 ">
@@ -123,30 +124,29 @@
                                                         alt="Avatar">
                                                     <div class="grow">
                                                         <span
-                                                            class="block text-sm font-semibold text-gray-800">Christina
-                                                            Bersh</span>
+                                                            class="block text-sm font-semibold text-gray-800">{{ $row->name }}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="h-px w-72 whitespace-nowrap">
-                                            <div class="px-6 py-3 ml-10 ">
-                                                <span class="block text-sm font-semibold text-gray-800">praveden@mail.ru</span>
-                                            </div>
-                                        </td>
-                                        <td class="h-px w-72 whitespace-nowrap">
-                                            <div class="px-6 py-3 ml-4">
-                                                <span class="block text-sm font-semibold text-gray-800">21.10.1977</span>
+                                            <div class="px-6 py-3 ml-4 ">
+                                                <span class="block text-sm font-semibold text-gray-800">{{ $row->email }}</span>
                                             </div>
                                         </td>
                                         <td class="h-px w-72 whitespace-nowrap">
                                             <div class="px-6 py-3">
-                                                <span class="block text-sm font-semibold text-gray-800">Слово Истины</span>
+                                                <span class="block text-sm font-semibold text-gray-800">{{ $row->birthdate ?? '-'}}</span>
                                             </div>
                                         </td>
-                                        <td class="size-px whitespace-nowrap">
+                                        <td class="h-px w-72 whitespace-nowrap">
                                             <div class="px-6 py-3">
-                                                <span class="text-sm text-gray-500">28 Dec, 12:12</span>
+                                                <span class="block text-sm font-semibold text-gray-800">{{ $row->church ?? '-' }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="h-px w-72 whitespace-nowrap">
+                                            <div class="px-6 py-3">
+                                                <span class="block text-sm font-semibold text-gray-800">{{ $row->city ?? '-' }}</span>
                                             </div>
                                         </td>
                                         <td class="size-px whitespace-nowrap">
@@ -158,6 +158,11 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    @empty
+                                    <h2 class="text-xl font-semibold text-gray-800">
+                                        Нет данных
+                                    </h2>
+                                    @endforelse
                                 </tbody>
                             </table>
                             <!-- End Table -->

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -40,6 +41,13 @@ class UserController extends Controller
             'password' => 'required|min:8',
         ]);
 
+        $imageName = null;
+
+        if ($request->photo) {
+            $imageName = time().'.'.$request->file('photo')->extension();
+            $request->photo->storeAs('public/images', $imageName);
+        }
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -47,6 +55,7 @@ class UserController extends Controller
             'birthdate' => $request->birthdate,
             'church' => $request->church,
             'city' => $request->city,
+            'photo_profile' => $imageName,
         ]);
 
         return redirect()->route('users.index')->with('success', 'Пользователь добавлен!');
@@ -80,6 +89,19 @@ class UserController extends Controller
             'email' => 'required|email',
         ]);
 
+        if ($request->photo) {
+            $imageName = time().'.'.$request->file('photo')->extension();
+            $request->photo->storeAs('public/images', $imageName);
+
+            //delete old photo
+            $path = storage_path('app/public/images/'.$user->photo_profile);
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+
+            $user->photo_profile = $imageName;
+        }
+
         $user->name = $request->name;
         $user->email = $request->email;
         if ($request->password != '') {
@@ -100,6 +122,12 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         try {
+            //delete old photo
+            $path = storage_path('app/public/images/'.$user->photo_profile);
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+
             $user->deleteOrFail();
 
             return redirect()->route('users.index')->with('danger', 'Пользователь удален!');

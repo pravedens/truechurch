@@ -72,6 +72,9 @@
                                 <input name="name" id="af-submit-app-project-name" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                     placeholder="Введите имя">
+                                @error('name')
+                                    <span class="text-sm text-red-400">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="space-y-2">
@@ -83,6 +86,9 @@
                                 <input name="email" id="af-submit-app-project-name" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                     placeholder="Введите email">
+                                @error('email')
+                                    <span class="text-sm text-red-400">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="space-y-2">
@@ -126,6 +132,9 @@
                                 <input name="password" id="af-submit-app-project-name" type="password"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                     placeholder="Введите пароль">
+                                @error('password')
+                                    <span class="text-sm text-red-400">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <!--<div class="space-y-2">

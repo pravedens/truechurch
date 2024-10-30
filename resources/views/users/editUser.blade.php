@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            Create User
+            Edit User
         </h2>
     </x-slot>
 
@@ -9,7 +9,8 @@
     <div class="mx-auto max-w-7xl sm:px-3 lg:px-3">
         <!-- Card Section -->
         <div class="max-w-4xl px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-14">
-            <form action="{{ route('users.store') }}" method="post">
+            <form action="{{ route('users.update', $user->id) }}" method="post">
+                @method('PUT')
                 @csrf
                 <!-- Card -->
                 <div class="bg-white shadow rounded-xl">
@@ -71,7 +72,7 @@
 
                                 <input name="name" id="af-submit-app-project-name" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                    placeholder="Введите имя">
+                                    value="{{ $user->name }}">
                                 @error('name')
                                     <span class="text-sm text-red-400">{{ $message }}</span>
                                 @enderror
@@ -85,7 +86,7 @@
 
                                 <input name="email" id="af-submit-app-project-name" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                    placeholder="Введите email">
+                                    value="{{ $user->email }}">
                                 @error('email')
                                     <span class="text-sm text-red-400">{{ $message }}</span>
                                 @enderror
@@ -98,7 +99,8 @@
                                 </label>
 
                                 <input name="birthdate" id="af-submit-app-project-name" type="date"
-                                    class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+                                    class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    value="{{ $user->birthdate }}">
                             </div>
 
                             <div class="space-y-2">
@@ -109,7 +111,7 @@
 
                                 <input name="church" id="af-submit-app-project-name" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                    placeholder="Введите название церкви">
+                                    value="{{ $user->church }}">
                             </div>
 
                             <div class="space-y-2">
@@ -120,7 +122,7 @@
 
                                 <input name="city" id="af-submit-app-project-name" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                    placeholder="Введите город">
+                                    value="{{ $user->city }}">
                             </div>
 
                             <div class="space-y-2">
@@ -132,6 +134,8 @@
                                 <input name="password" id="af-submit-app-project-name" type="password"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                     placeholder="Введите пароль">
+                                <span class="text-sm text-red-400">Оставьте поле пустым, если не хотите
+                                    менять пароль.</span>
                                 @error('password')
                                     <span class="text-sm text-red-400">{{ $message }}</span>
                                 @enderror
@@ -175,4 +179,3 @@
     </div>
 
 </x-app-layout>
-

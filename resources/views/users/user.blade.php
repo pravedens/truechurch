@@ -110,58 +110,71 @@
 
                                 <tbody class="divide-y divide-gray-200">
                                     @forelse ($users as $row)
-                                    <tr>
-                                        <td class="h-px w-72 whitespace-nowrap">
-                                            <div class="px-6 py-3 ml-2 ">
-                                                <span class="block text-sm font-semibold text-gray-800">1</span>
-                                            </div>
-                                        </td>
-                                        <td class="size-px whitespace-nowrap">
-                                            <div class="py-3 ps-6 lg:ps-3 xl:ps-0 pe-6">
-                                                <div class="flex items-center gap-x-3">
-                                                    <img class="inline-block size-[38px] rounded-full"
-                                                        src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
-                                                        alt="Avatar">
-                                                    <div class="grow">
-                                                        <span
-                                                            class="block text-sm font-semibold text-gray-800">{{ $row->name }}</span>
+                                        <tr>
+                                            <td class="h-px w-72 whitespace-nowrap">
+                                                <div class="px-6 py-3 ml-2 ">
+                                                    <span class="block text-sm font-semibold text-gray-800">1</span>
+                                                </div>
+                                            </td>
+                                            <td class="size-px whitespace-nowrap">
+                                                <div class="py-3 ps-6 lg:ps-3 xl:ps-0 pe-6">
+                                                    <div class="flex items-center gap-x-3">
+                                                        <img class="inline-block size-[38px] rounded-full"
+                                                            src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
+                                                            alt="Avatar">
+                                                        <div class="grow">
+                                                            <span
+                                                                class="block text-sm font-semibold text-gray-800">{{ $row->name }}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td class="h-px w-72 whitespace-nowrap">
-                                            <div class="px-6 py-3 ml-4 ">
-                                                <span class="block text-sm font-semibold text-gray-800">{{ $row->email }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="h-px w-72 whitespace-nowrap">
-                                            <div class="px-6 py-3">
-                                                <span class="block text-sm font-semibold text-gray-800">{{ $row->birthdate ?? '-'}}</span>
-                                            </div>
-                                        </td>
-                                        <td class="h-px w-72 whitespace-nowrap">
-                                            <div class="px-6 py-3">
-                                                <span class="block text-sm font-semibold text-gray-800">{{ $row->church ?? '-' }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="h-px w-72 whitespace-nowrap">
-                                            <div class="px-6 py-3">
-                                                <span class="block text-sm font-semibold text-gray-800">{{ $row->city ?? '-' }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="size-px whitespace-nowrap">
-                                            <div class="px-6 py-1.5">
-                                                <a class="inline-flex items-center text-sm font-medium text-blue-600 gap-x-1 decoration-2 hover:underline focus:outline-none focus:underline"
-                                                    href="#">
-                                                    Edit
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td class="h-px w-72 whitespace-nowrap">
+                                                <div class="px-6 py-3 ml-4 ">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800">{{ $row->email }}</span>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-72 whitespace-nowrap">
+                                                <div class="px-6 py-3">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800">{{ $row->birthdate ?? '-' }}</span>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-72 whitespace-nowrap">
+                                                <div class="px-6 py-3">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800">{{ $row->church ?? '-' }}</span>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-72 whitespace-nowrap">
+                                                <div class="px-6 py-3">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800">{{ $row->city ?? '-' }}</span>
+                                                </div>
+                                            </td>
+                                            <td class="size-px whitespace-nowrap">
+                                                <div class="px-6 py-1.5 flex gap-2">
+                                                    <a class="inline-flex items-center text-sm font-medium text-blue-600 gap-x-1 decoration-2 hover:underline focus:outline-none focus:underline"
+                                                        href="{{ route('users.edit', $row->id) }}">
+                                                        Edit
+                                                    </a>
+                                                    <form onsubmit="return confirm('Вы уверены, что хотите удалить этого пользователя?')" method="post"
+                                                        action="{{ route('users.destroy', $row->id) }}">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="inline-flex items-center text-sm font-medium text-red-600 gap-x-1 decoration-2 hover:underline focus:outline-none focus:underline"
+                                                            href="{{ route('users.edit', $row->id) }}">
+                                                            Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     @empty
-                                    <h2 class="text-xl font-semibold text-gray-800">
-                                        Нет данных
-                                    </h2>
+                                        <h2 class="text-xl font-semibold text-gray-800">
+                                            Нет данных
+                                        </h2>
                                     @endforelse
                                 </tbody>
                             </table>

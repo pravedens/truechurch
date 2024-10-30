@@ -49,7 +49,7 @@ class UserController extends Controller
             'city' => $request->city,
         ]);
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Пользователь добавлен!');
     }
 
     /**
@@ -91,7 +91,7 @@ class UserController extends Controller
 
         $user->update();
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Данные пользователя изменены!');
     }
 
     /**
@@ -102,7 +102,7 @@ class UserController extends Controller
         try {
             $user->deleteOrFail();
 
-            return redirect()->route('users.index');
+            return redirect()->route('users.index')->with('danger', 'Пользователь удален!');
         } catch (Exception $e) {
             return $e->getMessage();
         }

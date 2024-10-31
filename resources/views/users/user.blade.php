@@ -29,6 +29,14 @@
 
                                 <div>
                                     <div class="inline-flex gap-x-2">
+                                        <form method="GET" action="{{ route('users.index') }}">
+                                            <div class="max-w-sm space-y-3">
+                                                <input value="{{ request('search') }}" name="search"
+                                                    type="text"
+                                                    class="block w-full px-5 py-3 text-sm border-gray-200 rounded-full focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                                    placeholder="Поиск">
+                                            </div>
+                                        </form>
 
                                         <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg gap-x-2 hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                                             href="{{ route('users.create') }}">

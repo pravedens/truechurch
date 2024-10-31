@@ -1,4 +1,3 @@
-<!-- ========== MAIN CONTENT ========== -->
 <main id="content">
     <!-- Breadcrumb -->
     <div class="sticky inset-x-0 top-0 z-20 px-4 bg-white border-y sm:px-6 lg:px-8 ">
@@ -46,7 +45,7 @@
                       w-[260px] h-full
                       hidden
                       fixed inset-y-0 start-0 z-[60]
-                      bg-white border-e border-gray-200
+                      bg-blue-200 border-e border-gray-200
 
                      "
         role="dialog" tabindex="-1" aria-label="Sidebar">
@@ -78,7 +77,7 @@
                 <nav class="flex flex-col flex-wrap w-full p-3 hs-accordion-group" data-hs-accordion-always-open>
                     <ul class="flex flex-col space-y-1">
                         <li>
-                            <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                            <x-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
                                 <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
                                     height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -86,20 +85,6 @@
                                     <polyline points="9 22 9 12 15 12 15 22" />
                                 </svg>
                                 Dashboard
-                            </x-nav-link>
-                        </li>
-
-                        <li>
-                            <x-nav-link :href="route('users.index')" :active="request()->routeIs(['users.index', 'users.show', 'users.create'])">
-                                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
-                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                                    <circle cx="9" cy="7" r="4" />
-                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                </svg>
-                                User
                             </x-nav-link>
                         </li>
 

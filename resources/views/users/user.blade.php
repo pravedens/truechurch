@@ -109,11 +109,11 @@
                                 </thead>
 
                                 <tbody class="divide-y divide-gray-200">
-                                    @forelse ($users as $row)
+                                    @forelse ($users as $index => $row)
                                         <tr>
                                             <td class="h-px w-72 whitespace-nowrap">
                                                 <div class="px-6 py-3 ml-2 ">
-                                                    <span class="block text-sm font-semibold text-gray-800">1</span>
+                                                    <span class="block text-sm font-semibold text-gray-800">{{ $index+ $users->firstItem() }}</span>
                                                 </div>
                                             </td>
                                             <td class="size-px whitespace-nowrap">
@@ -183,7 +183,8 @@
                             <!-- Footer -->
                             <div
                                 class="grid gap-3 px-6 py-4 border-t border-gray-200 md:flex md:justify-between md:items-center">
-                                <div>
+                                {{ $users->links('pagination::simple-tailwind') }}
+                                <!--<div>
                                     <p class="text-sm text-gray-600">
                                         <span class="font-semibold text-gray-800">12</span> results
                                     </p>
@@ -213,7 +214,7 @@
                                             </svg>
                                         </button>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                             <!-- End Footer -->
                         </div>

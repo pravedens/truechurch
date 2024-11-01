@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            Create User
+            {{ $title }}
         </h2>
     </x-slot>
 
@@ -9,7 +9,7 @@
     <div class="mx-auto max-w-7xl sm:px-3 lg:px-3">
         <!-- Card Section -->
         <div class="max-w-4xl px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-14">
-            <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('categories.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <!-- Card -->
                 <div class="bg-white shadow rounded-xl">
@@ -31,18 +31,19 @@
                     </div>
 
                     <div class="p-4 pt-0 sm:pt-0 sm:p-7">
+                        <!-- Grid -->
                         <div class="space-y-4 sm:space-y-6">
-                            <!-- Grid -->
+
                             <div class="space-y-2">
                                 <label for="af-submit-app-project-name"
                                     class="inline-block text-sm font-medium text-gray-800 mt-2.5">
-                                    Имя
+                                    Спикер
                                 </label>
 
-                                <input name="name" id="af-submit-app-project-name" type="text"
+                                <input name="title" id="af-submit-app-project-name" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                    placeholder="Введите имя">
-                                @error('name')
+                                    placeholder="Спикер">
+                                @error('title')
                                     <span class="text-sm text-red-400">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -50,49 +51,16 @@
                             <div class="space-y-2">
                                 <label for="af-submit-project-url"
                                     class="inline-block text-sm font-medium text-gray-800 mt-2.5">
-                                    Email
+                                    О спикере
                                 </label>
 
-                                <input name="email" id="af-submit-app-project-name" type="text"
-                                    class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                    placeholder="Введите email">
-                                @error('email')
+                                <textarea name="description" id="af-submit-app-description" type="text"
+                                    class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                    rows="6" placeholder="Расскажите немного о спикере"></textarea>
+                                @error('description')
                                     <span class="text-sm text-red-400">{{ $message }}</span>
                                 @enderror
                             </div>
-
-                            <div class="space-y-2">
-                                <label for="af-submit-project-url"
-                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
-                                    Дата рождения
-                                </label>
-
-                                <input name="birthdate" id="af-submit-app-project-name" type="date"
-                                    class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
-                            </div>
-
-                            <div class="space-y-2">
-                                <label for="af-submit-project-url"
-                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
-                                    Церковь
-                                </label>
-
-                                <input name="church" id="af-submit-app-project-name" type="text"
-                                    class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                    placeholder="Введите название церкви">
-                            </div>
-
-                            <div class="space-y-2">
-                                <label for="af-submit-project-url"
-                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
-                                    Город
-                                </label>
-
-                                <input name="city" id="af-submit-app-project-name" type="text"
-                                    class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                    placeholder="Введите город">
-                            </div>
-
 
                             <div>
                                 <label class="sr-only">
@@ -102,28 +70,14 @@
                                 <div class="flex flex-col sm:flex-row sm:items-center sm:gap-x-5">
 
                                     <div class="mt-4 sm:mt-auto sm:mb-1.5 flex justify-center sm:justify-start gap-2">
-                                        <input name="photo" type="file"
+                                        <input name="thumbnail" type="file"
                                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
                                         <!--<button type="button"
-                                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-red-500 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
-                                                Delete
-                                            </button>-->
+                                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-red-500 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                                            Delete
+                                        </button>-->
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="space-y-2">
-                                <label for="af-submit-project-url"
-                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
-                                    Пароль
-                                </label>
-
-                                <input name="password" id="af-submit-app-project-name" type="password"
-                                    class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                    placeholder="Введите пароль">
-                                @error('password')
-                                    <span class="text-sm text-red-400">{{ $message }}</span>
-                                @enderror
                             </div>
 
                             <!--<div class="space-y-2">
@@ -146,7 +100,7 @@
                         <!-- End Grid -->
 
                         <div class="flex justify-center mt-5 gap-x-2">
-                            <a href="{{ route('users.index') }}" onclick="return confirm('Вернуться. уверены?')"
+                            <a href="{{ route('categories.index') }}" onclick="return confirm('Вернуться. уверены?')"
                                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
                                 Отменить
                             </a>

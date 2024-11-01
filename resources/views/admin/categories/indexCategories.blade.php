@@ -134,18 +134,18 @@
                                             <td class="size-px whitespace-nowrap">
                                                 <div class="px-6 py-1.5 flex gap-2">
                                                     <a class="inline-flex items-center text-sm font-medium text-blue-600 gap-x-1 decoration-2 hover:underline focus:outline-none focus:underline"
-                                                        href="{{ route('categories.edit', $row->id) }}">
+                                                        href="{{ route('categories.edit', $row->slug) }}">
                                                         Edit
                                                     </a>
                                                     <form
-                                                        onsubmit="return confirm('Вы уверены, что хотите удалить этого пользователя?')"
+                                                        onsubmit="return confirm('Вы уверены, что хотите удалить этого спикера?')"
                                                         method="post"
-                                                        action="{{ route('categories.destroy', $row->id) }}">
+                                                        action="{{ route('categories.destroy', $row->slug) }}">
                                                         @method('DELETE')
                                                         @csrf
                                                         <button type="submit"
                                                             class="inline-flex items-center text-sm font-medium text-red-600 gap-x-1 decoration-2 hover:underline focus:outline-none focus:underline"
-                                                            href="{{ route('categories.edit', $row->id) }}">
+                                                            href="{{ route('categories.edit', $row->slug) }}">
                                                             Delete
                                                         </button>
                                                     </form>

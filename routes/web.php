@@ -26,10 +26,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->group(function(){
     //Page User
     Route::resource('users', UserController::class);
-    Route::resource('categories', CategoryController::class);
+    Route::resource('categories', CategoryController::class)->parameters(['categories' => 'category:slug']);
     Route::resource('posts', PostController::class);
-    Route::resource('groups', GroupController::class);
-    Route::resource('conferences', ConferenceController::class);
+    Route::resource('groups', GroupController::class)->parameters(['groups' => 'group:slug']);
+    Route::resource('conferences', ConferenceController::class)->parameters(['conferences' => 'conference:slug']);
 });
 
 Route::get('/home', function () {

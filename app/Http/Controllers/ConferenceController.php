@@ -4,16 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Conference;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ConferenceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $conferences = Conference::when($request->search, function($query) use($request){
+            $query->where('title', 'like', '%'.$request->search.'%');
+        })->paginate(20)->appends(['search' => $request->search]);
+
+        return view('admin.conferences.indexConferences', compact('conferences'));
     }
 
     /**
@@ -21,7 +27,9 @@ class ConferenceController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'Добавить мероприятие';
+
+        return view('admin.conferences.formConferences', compact('title'));
     }
 
     /**
@@ -29,7 +37,16 @@ class ConferenceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|min:3'
+        ]);
+
+        Conference::create([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+        ]);
+
+        return redirect()->route('conferences.index')->with('success', 'Мероприятие добавлено!');
     }
 
     /**
@@ -45,7 +62,9 @@ class ConferenceController extends Controller
      */
     public function edit(Conference $conference)
     {
-        //
+        $title = 'Редактировать мероприятие '.$conference->title;
+
+        return view('admin.conferences.editConferences', compact('title', 'conference'));
     }
 
     /**
@@ -53,7 +72,16 @@ class ConferenceController extends Controller
      */
     public function update(Request $request, Conference $conference)
     {
-        //
+        $request->validate([
+            'title' => 'required|min:3'
+        ]);
+
+            $conference->title = $request->title;
+            $conference->slug = Str::slug($request->title);
+
+            $conference->update();
+
+        return redirect()->route('conferences.index')->with('success', 'Мероприятие изменено!');
     }
 
     /**
@@ -61,6 +89,12 @@ class ConferenceController extends Controller
      */
     public function destroy(Conference $conference)
     {
-        //
+        try {
+            $conference->deleteOrFail();
+
+            return redirect()->route('conferences.index')->with('danger', 'Мероприятие удалено!');
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 }

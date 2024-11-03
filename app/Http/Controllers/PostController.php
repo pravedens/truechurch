@@ -7,9 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Conference;
 use App\Models\Group;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -91,7 +93,15 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $title = 'Редактировать публикацию '.$post->name;
+
+        $categories = Category::all();
+
+        $groups = Group::all();
+
+        $conferences = Conference::all();
+
+        return view('admin.posts.editPost', compact('title', 'post', 'categories', 'groups', 'conferences'));
     }
 
     /**
@@ -99,7 +109,38 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => 'required|min:3',
+            'description' => 'required',
+            'content' => 'required'
+        ]);
+
+        $ThumbnailPost = null;
+
+        if ($request->thumbnail) {
+            $ThumbnailPost = time().'.'.$request->file('thumbnail')->extension();
+            $request->thumbnail->storeAs('public/posts/', $ThumbnailPost);
+
+            //delete old photo
+            $path = storage_path('app/public/posts/'.$post->thumbnail);
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+
+            $post->thumbnail = $ThumbnailPost;
+        }
+
+            $post->title = $request->title;
+            $post->slug = Str::slug($request->title);
+            $post->description = $request->description;
+            $post->content = $request->content;
+            $post->youtube = $request->youtube;
+            $post->rutube = $request->rutube;
+            $post->dzen = $request->dzen;
+
+            $post->update();
+
+        return redirect()->route('posts.index')->with('success', 'Публикация изменена!');
     }
 
     /**
@@ -107,6 +148,18 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        try {
+            //delete old photo
+            $path = storage_path('app/public/posts/'.$post->thumbnail);
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+
+            $post->deleteOrFail();
+
+            return redirect()->route('posts.index')->with('danger', 'Публикация удалена!');
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 }

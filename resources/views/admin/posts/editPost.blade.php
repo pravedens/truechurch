@@ -9,7 +9,8 @@
     <div class="mx-auto max-w-7xl sm:px-3 lg:px-3">
         <!-- Card Section -->
         <div class="max-w-4xl px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-14">
-            <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('posts.update', $post->slug) }}" method="post" enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
                 <!-- Card -->
                 <div class="bg-white shadow rounded-xl">
@@ -43,7 +44,8 @@
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-9 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
                                     <option selected>Выберите спикера</option>
                                     @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                        <option @if ($category->id == $post->category_id) selected='selected' @endif
+                                            value="{{ $category->id }}">{{ $category->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -58,7 +60,8 @@
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-9 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
                                     <option selected>Выберите год</option>
                                     @foreach ($groups as $group)
-                                    <option value="{{ $group->id }}">{{ $group->title }}</option>
+                                        <option @if ($group->id == $post->group_id) selected='selected' @endif
+                                            value="{{ $group->id }}">{{ $group->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -73,7 +76,8 @@
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-9 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
                                     <option selected>Выберите мероприятие</option>
                                     @foreach ($conferences as $conference)
-                                    <option value="{{ $conference->id }}">{{ $conference->title }}</option>
+                                        <option @if ($conference->id == $post->conference_id) selected='selected' @endif
+                                            value="{{ $conference->id }}">{{ $conference->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -86,7 +90,7 @@
 
                                 <input name="title" id="af-submit-app-project-name" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                    placeholder="Публикация">
+                                    value="{{ $post->title }}">
                                 @error('title')
                                     <span class="text-sm text-red-400">{{ $message }}</span>
                                 @enderror
@@ -100,7 +104,7 @@
 
                                 <textarea name="description" id="af-submit-app-description" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                    rows="6" placeholder="Расскажите немного о публикации"></textarea>
+                                    rows="6" placeholder="Расскажите немного о публикации">{{ $post->description }}</textarea>
                                 @error('description')
                                     <span class="text-sm text-red-400">{{ $message }}</span>
                                 @enderror
@@ -114,7 +118,7 @@
 
                                 <textarea name="content" id="af-submit-app-description" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                    rows="6" placeholder="Публикация"></textarea>
+                                    rows="6" placeholder="Публикация">{{ $post->content }}</textarea>
                                 @error('content')
                                     <span class="text-sm text-red-400">{{ $message }}</span>
                                 @enderror
@@ -128,6 +132,9 @@
                                 <div class="flex flex-col sm:flex-row sm:items-center sm:gap-x-5">
 
                                     <div class="mt-4 sm:mt-auto sm:mb-1.5 flex justify-center sm:justify-start gap-2">
+                                        <img class="relative z-10 inline-block mx-auto -mt-8 rounded-full size-24 sm:mx-0 ring-4 ring-white dark:ring-neutral-900"
+                                            src="{{ asset('storage/posts/' . $post->thumbnail) }}"
+                                            alt="Avatar">
                                         <input name="thumbnail" type="file"
                                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
                                         <!--<button type="button"
@@ -146,7 +153,7 @@
 
                                 <input name="youtube" id="af-submit-app-project-name" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                    placeholder="Ссылка Youtube">
+                                    placeholder="Ссылка Youtube" value="{{ $post->youtube }}">
                                 @error('youtube')
                                     <span class="text-sm text-red-400">{{ $message }}</span>
                                 @enderror
@@ -160,7 +167,7 @@
 
                                 <input name="rutube" id="af-submit-app-project-name" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                    placeholder="Ссылка rutube">
+                                    placeholder="Ссылка rutube" value="{{ $post->rutube }}">
                                 @error('rutube')
                                     <span class="text-sm text-red-400">{{ $message }}</span>
                                 @enderror
@@ -174,7 +181,7 @@
 
                                 <input name="dzen" id="af-submit-app-project-name" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                    placeholder="Ссылка dzen">
+                                    placeholder="Ссылка dzen" value="{{ $post->dzen }}">
                                 @error('dzen')
                                     <span class="text-sm text-red-400">{{ $message }}</span>
                                 @enderror
@@ -183,13 +190,13 @@
                         <!-- End Grid -->
 
                         <div class="flex justify-center mt-5 gap-x-2">
-                            <a href="{{ route('categories.index') }}" onclick="return confirm('Вернуться. уверены?')"
+                            <a href="{{ route('posts.index') }}" onclick="return confirm('Вернуться. уверены?')"
                                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
                                 Отменить
                             </a>
                             <button type="submit"
                                 class="inline-flex items-center px-4 py-3 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg gap-x-2 hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
-                                Сохранить
+                                Изменить
                             </button>
                         </div>
                     </div>

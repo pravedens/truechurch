@@ -133,15 +133,15 @@
                                             <td class="size-px whitespace-nowrap">
                                                 <div class="px-6 py-1.5 flex gap-2">
                                                     <a class="inline-flex items-center text-sm font-medium text-blue-600 gap-x-1 decoration-2 hover:underline focus:outline-none focus:underline"
-                                                        href="{{ route('posts.edit', $row->id) }}">
+                                                        href="{{ route('posts.edit', $row->slug) }}">
                                                         Edit
                                                     </a>
                                                     <form onsubmit="return confirm('Вы уверены, что хотите удалить эту публикацию ?')" method="post"
-                                                        action="{{ route('posts.destroy', $row->id) }}">
+                                                        action="{{ route('posts.destroy', $row->slug) }}">
                                                         @method('DELETE')
                                                         @csrf
                                                         <button type="submit" class="inline-flex items-center text-sm font-medium text-red-600 gap-x-1 decoration-2 hover:underline focus:outline-none focus:underline"
-                                                            href="{{ route('posts.edit', $row->id) }}">
+                                                            href="{{ route('posts.edit', $row->slug) }}">
                                                             Delete
                                                         </button>
                                                     </form>

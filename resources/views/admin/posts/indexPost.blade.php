@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            Users
+            Публикация
         </h2>
     </x-slot>
 
@@ -20,25 +20,26 @@
                                 class="grid gap-3 px-6 py-4 border-b border-gray-200 md:flex md:justify-between md:items-center">
                                 <div>
                                     <h2 class="text-xl font-semibold text-gray-800">
-                                        Users
+                                        Публикация
                                     </h2>
                                     <p class="text-sm text-gray-600">
-                                        Add users, edit and more.
+                                        Добавление и редактирование публикаций
                                     </p>
                                 </div>
 
                                 <div>
                                     <div class="inline-flex gap-x-2">
-                                        <form method="GET" action="{{ route('users.index') }}">
+                                        <form method="GET" action="{{ route('posts.index') }}">
                                             <div class="max-w-sm space-y-3">
-                                                <input value="{{ request('search') }}" name="search" type="text"
+                                                <input value="{{ request('search') }}" name="search"
+                                                    type="text"
                                                     class="block w-full px-5 py-3 text-sm border-gray-200 rounded-full focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                     placeholder="Поиск">
                                             </div>
                                         </form>
 
                                         <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg gap-x-2 hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                                            href="{{ route('users.create') }}">
+                                            href="{{ route('posts.create') }}">
                                             <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
                                                 width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -55,127 +56,92 @@
 
                             <!-- Table -->
                             <table class="min-w-full divide-y divide-gray-200">
-                                @if (count($users) > 0)
-                                    <thead class="bg-gray-50">
-                                        <tr>
-                                            <th scope="col" class="py-3 ps-6 lg:ps-3 xl:ps-0 pe-6 text-start">
-                                                <div class="flex items-center gap-x-2">
-                                                    <span
-                                                        class="ml-4 text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                        No
-                                                    </span>
-                                                </div>
-                                            </th>
+                                @if (count($posts) > 0)
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="py-3 ps-6 lg:ps-3 xl:ps-0 pe-6 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="ml-4 text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                    No
+                                                </span>
+                                            </div>
+                                        </th>
 
-                                            <th scope="col" class="py-3 ps-6 lg:ps-3 xl:ps-0 pe-6 text-start">
-                                                <div class="flex items-center gap-x-2">
-                                                    <span
-                                                        class="ml-2 text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                        Имя
-                                                    </span>
-                                                </div>
-                                            </th>
+                                        <th scope="col" class="py-3 ps-6 lg:ps-3 xl:ps-0 pe-6 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="ml-2 text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                    Название
+                                                </span>
+                                            </div>
+                                        </th>
 
-                                            <th scope="col" class="px-6 py-3 text-start">
-                                                <div class="flex items-center ml-5 gap-x-2">
-                                                    <span
-                                                        class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                        Email
-                                                    </span>
-                                                </div>
-                                            </th>
+                                        <th scope="col" class="px-6 py-3 text-start">
+                                            <div class="flex items-center ml-5 gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                    Slug
+                                                </span>
+                                            </div>
+                                        </th>
 
-                                            <th scope="col" class="px-6 py-3 text-start">
-                                                <div class="flex items-center gap-x-2">
-                                                    <span
-                                                        class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                        Дата рождения
-                                                    </span>
-                                                </div>
-                                            </th>
+                                        <th scope="col" class="px-6 py-3 text-start">
+                                            <div class="flex items-center ml-5 gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                    Картинка
+                                                </span>
+                                            </div>
+                                        </th>
 
-                                            <th scope="col" class="px-6 py-3 text-start">
-                                                <div class="flex items-center gap-x-2">
-                                                    <span
-                                                        class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                        Церковь
-                                                    </span>
-                                                </div>
-                                            </th>
-
-                                            <th scope="col" class="px-6 py-3 text-start">
-                                                <div class="flex items-center gap-x-2">
-                                                    <span
-                                                        class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                        Город
-                                                    </span>
-                                                </div>
-                                            </th>
-
-                                            <th scope="col" class="px-6 py-3 text-end"></th>
-                                        </tr>
-                                    </thead>
+                                        <th scope="col" class="px-6 py-3 text-end"></th>
+                                    </tr>
+                                </thead>
                                 @endif
+
                                 <tbody class="divide-y divide-gray-200">
-                                    @forelse ($users as $index => $row)
+                                    @forelse ($posts as $index => $row)
                                         <tr>
                                             <td class="h-px w-72 whitespace-nowrap">
                                                 <div class="px-6 py-3 ml-2 ">
+                                                    <span class="block text-sm font-semibold text-gray-800">{{ $index+ $posts->firstItem() }}</span>
+                                                </div>
+                                            </td>
+
+                                            <td class="h-px w-72 whitespace-nowrap">
+                                                <div class="px-6 py-3 ml-4 ">
                                                     <span
-                                                        class="block text-sm font-semibold text-gray-800">{{ $index + $users->firstItem() }}</span>
+                                                        class="block text-sm font-semibold text-gray-800">{{ $row->title }}</span>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-72 whitespace-nowrap">
+                                                <div class="px-6 py-3">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800">{{ $row->slug }}</span>
                                                 </div>
                                             </td>
                                             <td class="size-px whitespace-nowrap">
                                                 <div class="py-3 ps-6 lg:ps-3 xl:ps-0 pe-6">
                                                     <div class="flex items-center gap-x-3">
                                                         <img class="inline-block size-[38px] rounded-full"
-                                                            src="{{ asset('storage/images/' . $row->photo_profile) }}"
+                                                            src="{{ asset('storage/posts/' . $row->thumbnail) }}"
                                                             alt="Avatar">
-                                                        <div class="grow">
-                                                            <span
-                                                                class="block text-sm font-semibold text-gray-800">{{ $row->name }}</span>
-                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="h-px w-72 whitespace-nowrap">
-                                                <div class="px-6 py-3 ml-4 ">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800">{{ $row->email }}</span>
-                                                </div>
-                                            </td>
-                                            <td class="h-px w-72 whitespace-nowrap">
-                                                <div class="px-6 py-3">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800">{{ $row->birthdate ?? '-' }}</span>
-                                                </div>
-                                            </td>
-                                            <td class="h-px w-72 whitespace-nowrap">
-                                                <div class="px-6 py-3">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800">{{ $row->church ?? '-' }}</span>
-                                                </div>
-                                            </td>
-                                            <td class="h-px w-72 whitespace-nowrap">
-                                                <div class="px-6 py-3">
-                                                    <span
-                                                        class="block text-sm font-semibold text-gray-800">{{ $row->city ?? '-' }}</span>
                                                 </div>
                                             </td>
                                             <td class="size-px whitespace-nowrap">
                                                 <div class="px-6 py-1.5 flex gap-2">
                                                     <a class="inline-flex items-center text-sm font-medium text-blue-600 gap-x-1 decoration-2 hover:underline focus:outline-none focus:underline"
-                                                        href="{{ route('users.edit', $row->id) }}">
+                                                        href="{{ route('posts.edit', $row->id) }}">
                                                         Edit
                                                     </a>
-                                                    <form
-                                                        onsubmit="return confirm('Вы уверены, что хотите удалить этого пользователя?')"
-                                                        method="post" action="{{ route('users.destroy', $row->id) }}">
+                                                    <form onsubmit="return confirm('Вы уверены, что хотите удалить эту публикацию ?')" method="post"
+                                                        action="{{ route('posts.destroy', $row->id) }}">
                                                         @method('DELETE')
                                                         @csrf
-                                                        <button type="submit"
-                                                            class="inline-flex items-center text-sm font-medium text-red-600 gap-x-1 decoration-2 hover:underline focus:outline-none focus:underline"
-                                                            href="{{ route('users.edit', $row->id) }}">
+                                                        <button type="submit" class="inline-flex items-center text-sm font-medium text-red-600 gap-x-1 decoration-2 hover:underline focus:outline-none focus:underline"
+                                                            href="{{ route('posts.edit', $row->id) }}">
                                                             Delete
                                                         </button>
                                                     </form>
@@ -183,7 +149,7 @@
                                             </td>
                                         </tr>
                                     @empty
-                                        <h2 class="text-xl font-semibold text-gray-800">
+                                        <h2 class="text-xl font-semibold text-center text-gray-800">
                                             Нет данных
                                         </h2>
                                     @endforelse
@@ -194,7 +160,7 @@
                             <!-- Footer -->
                             <div
                                 class="grid gap-3 px-6 py-4 border-t border-gray-200 md:flex md:justify-between md:items-center">
-                                {{ $users->links('pagination::simple-tailwind') }}
+                                {{ $posts->links('pagination::simple-tailwind') }}
                                 <!--<div>
                                     <p class="text-sm text-gray-600">
                                         <span class="font-semibold text-gray-800">12</span> results
@@ -238,3 +204,4 @@
     </div>
 
 </x-app-layout>
+

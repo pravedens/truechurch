@@ -55,39 +55,40 @@
 
                             <!-- Table -->
                             <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="py-3 ps-6 lg:ps-3 xl:ps-0 pe-6 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="ml-6 text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                    No
-                                                </span>
-                                            </div>
-                                        </th>
+                                @if (count($conferences) > 0)
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="py-3 ps-6 lg:ps-3 xl:ps-0 pe-6 text-start">
+                                                <div class="flex items-center gap-x-2">
+                                                    <span
+                                                        class="ml-6 text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                        No
+                                                    </span>
+                                                </div>
+                                            </th>
 
-                                        <th scope="col" class="py-3 ps-6 lg:ps-3 xl:ps-0 pe-6 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                    Мероприятие
-                                                </span>
-                                            </div>
-                                        </th>
+                                            <th scope="col" class="py-3 ps-6 lg:ps-3 xl:ps-0 pe-6 text-start">
+                                                <div class="flex items-center gap-x-2">
+                                                    <span
+                                                        class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                        Мероприятие
+                                                    </span>
+                                                </div>
+                                            </th>
 
-                                        <th scope="col" class="px-6 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                    Slug
-                                                </span>
-                                            </div>
-                                        </th>
+                                            <th scope="col" class="px-6 py-3 text-start">
+                                                <div class="flex items-center gap-x-2">
+                                                    <span
+                                                        class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                        Slug
+                                                    </span>
+                                                </div>
+                                            </th>
 
-                                        <th scope="col" class="px-6 py-3 text-end"></th>
-                                    </tr>
-                                </thead>
-
+                                            <th scope="col" class="px-6 py-3 text-end"></th>
+                                        </tr>
+                                    </thead>
+                                @endif
                                 <tbody class="divide-y divide-gray-200">
                                     @forelse ($conferences as $index => $row)
                                         <tr>

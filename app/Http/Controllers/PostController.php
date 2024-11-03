@@ -4,16 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Conference;
+use App\Models\Group;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $posts = Post::when($request->search, function($query) use($request){
+            $query->where('title', 'like', '%'.$request->search.'%');
+        })->paginate(20)->appends(['search' => $request->search]);
+
+        return view('admin.posts.indexPost', compact('posts'));
     }
 
     /**
@@ -21,7 +30,16 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+
+        $title = 'Добавить публикацию';
+
+        $categories = Category::all();
+
+        $groups = Group::all();
+
+        $conferences = Conference::all();
+
+        return view('admin.posts.formPost', compact('title', 'categories', 'groups', 'conferences'));
     }
 
     /**
@@ -29,7 +47,35 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|min:3',
+            'description' => 'required',
+            'content' => 'required'
+        ]);
+
+        $ThumbnailPost = null;
+
+        if ($request->thumbnail) {
+            $ThumbnailPost = time().'.'.$request->file('thumbnail')->extension();
+            $request->thumbnail->storeAs('public/posts/', $ThumbnailPost);
+        }
+
+        Post::create([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'description' => $request->description,
+            'content' => $request->content,
+            'thumbnail' => $ThumbnailPost,
+            'youtube' => $request->youtube,
+            'rutube' => $request->rutube,
+            'dzen' => $request->dzen,
+            'category_id' => $request->category,
+            'group_id' => $request->group,
+            'conference_id' => $request->conference,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        return redirect()->route('posts.index')->with('success', 'Публикация добавлена!');
     }
 
     /**

@@ -90,6 +90,33 @@
                                             <div class="flex items-center ml-5 gap-x-2">
                                                 <span
                                                     class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                    Спикер
+                                                </span>
+                                            </div>
+                                        </th>
+
+                                        <th>                                    <th scope="col" class="px-6 py-3 text-start">
+                                            <div class="flex items-center ml-5 gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                    Год
+                                                </span>
+                                            </div>
+                                        </th>
+
+                                        <th>                                    <th scope="col" class="px-6 py-3 text-start">
+                                            <div class="flex items-center ml-5 gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                    Мероприятие
+                                                </span>
+                                            </div>
+                                        </th>
+
+                                        <th scope="col" class="px-6 py-3 text-start">
+                                            <div class="flex items-center ml-5 gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
                                                     Картинка
                                                 </span>
                                             </div>
@@ -119,6 +146,24 @@
                                                 <div class="px-6 py-3">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800">{{ $row->slug }}</span>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-72 whitespace-nowrap">
+                                                <div class="px-6 py-3">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800">{{ $row->category_id }}</span>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-72 whitespace-nowrap">
+                                                <div class="px-6 py-3">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800">{{ $row->group_id }}</span>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-72 whitespace-nowrap">
+                                                <div class="px-6 py-3">
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800">{{ $row->conference_id }}</span>
                                                 </div>
                                             </td>
                                             <td class="size-px whitespace-nowrap">

@@ -59,35 +59,35 @@
                                 @if (count($posts) > 0)
                                 <thead class="bg-gray-50">
                                     <tr>
-                                        <th scope="col" class="py-3 ps-6 lg:ps-3 xl:ps-0 pe-6 text-start">
+                                        <th scope="col" class="px-6 py-3 text-start">
                                             <div class="flex items-center gap-x-2">
                                                 <span
-                                                    class="ml-4 text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
                                                     No
                                                 </span>
                                             </div>
                                         </th>
 
-                                        <th scope="col" class="py-3 ps-6 lg:ps-3 xl:ps-0 pe-6 text-start">
+                                        <th scope="col" class="px-6 py-3 text-start">
                                             <div class="flex items-center gap-x-2">
                                                 <span
-                                                    class="ml-2 text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
                                                     Название
                                                 </span>
                                             </div>
                                         </th>
 
-                                        <th scope="col" class="px-6 py-3 text-start">
-                                            <div class="flex items-center ml-5 gap-x-2">
+                                        <!--<th scope="col" class="px-6 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
                                                 <span
                                                     class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
                                                     Slug
                                                 </span>
                                             </div>
-                                        </th>
+                                        </th>-->
 
                                         <th scope="col" class="px-6 py-3 text-start">
-                                            <div class="flex items-center ml-5 gap-x-2">
+                                            <div class="flex items-center gap-x-2">
                                                 <span
                                                     class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
                                                     Спикер
@@ -95,8 +95,8 @@
                                             </div>
                                         </th>
 
-                                        <th>                                    <th scope="col" class="px-6 py-3 text-start">
-                                            <div class="flex items-center ml-5 gap-x-2">
+                                        <th scope="col" class="px-6 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
                                                 <span
                                                     class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
                                                     Год
@@ -104,8 +104,8 @@
                                             </div>
                                         </th>
 
-                                        <th>                                    <th scope="col" class="px-6 py-3 text-start">
-                                            <div class="flex items-center ml-5 gap-x-2">
+                                        <th scope="col" class="px-6 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
                                                 <span
                                                     class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
                                                     Мероприятие
@@ -113,8 +113,8 @@
                                             </div>
                                         </th>
 
-                                        <th scope="col" class="px-6 py-3 text-start">
-                                            <div class="flex items-center ml-5 gap-x-2">
+                                        <th scope="col" class="px-4 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
                                                 <span
                                                     class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
                                                     Картинка
@@ -131,39 +131,41 @@
                                     @forelse ($posts as $index => $row)
                                         <tr>
                                             <td class="h-px w-72 whitespace-nowrap">
-                                                <div class="px-6 py-3 ml-2 ">
+                                                <div class="px-6 py-3">
                                                     <span class="block text-sm font-semibold text-gray-800">{{ $index+ $posts->firstItem() }}</span>
                                                 </div>
                                             </td>
 
                                             <td class="h-px w-72 whitespace-nowrap">
-                                                <div class="px-6 py-3 ml-4 ">
+                                                <div class="px-2 py-3">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800">{{ $row->title }}</span>
                                                 </div>
                                             </td>
-                                            <td class="h-px w-72 whitespace-nowrap">
-                                                <div class="px-6 py-3">
+
+                                            <!--<td class="h-px w-72 whitespace-nowrap">
+                                                <div class="px-4 py-3">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800">{{ $row->slug }}</span>
                                                 </div>
-                                            </td>
+                                            </td>-->
+
                                             <td class="h-px w-72 whitespace-nowrap">
                                                 <div class="px-6 py-3">
                                                     <span
-                                                        class="block text-sm font-semibold text-gray-800">{{ $row->category_id }}</span>
+                                                        class="block text-sm font-semibold text-gray-800">{{ $row->category->title }}</span>
                                                 </div>
                                             </td>
                                             <td class="h-px w-72 whitespace-nowrap">
                                                 <div class="px-6 py-3">
                                                     <span
-                                                        class="block text-sm font-semibold text-gray-800">{{ $row->group_id }}</span>
+                                                        class="block text-sm font-semibold text-gray-800">{{ $row->group->title }}</span>
                                                 </div>
                                             </td>
                                             <td class="h-px w-72 whitespace-nowrap">
                                                 <div class="px-6 py-3">
                                                     <span
-                                                        class="block text-sm font-semibold text-gray-800">{{ $row->conference_id }}</span>
+                                                        class="block text-sm font-semibold text-gray-800">{{ $row->conference->title }}</span>
                                                 </div>
                                             </td>
                                             <td class="size-px whitespace-nowrap">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -38,13 +39,9 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|unique:users|email',
-            'password' => 'required|min:8',
-        ]);
+        $request->validated();
 
         $imageName = null;
 
@@ -87,12 +84,9 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(StoreUserRequest $request, User $user)
     {
-        $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email',
-        ]);
+        $request->validated();
 
         if ($request->photo) {
             $imageName = time().'.'.$request->file('photo')->extension();

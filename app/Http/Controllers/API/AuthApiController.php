@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -31,14 +32,14 @@ class AuthApiController extends Controller
             $data = [
                 'access_token' => $tokenResult,
                 'token_type' => 'Bearer',
-                'user' => $user
+                'user' => new UserResource($user)
             ];
 
-            return response()->json(['status' => true, 'data' => $data, 'message' => 'Создание токена прошло успешно']);
+            return $this->sendResponse($data, 'Создание токена прошло успешно');
 
         } catch (Exception $error) {
 
-            return response()->json(['status' => false, 'data' => null, 'message' => 'Не удалось создать токен, message: '.$error->getMessage()]);
+            return $this->sendError('Не удалось создать токен', $error->getMessage());
         }
     }
 
@@ -52,9 +53,7 @@ class AuthApiController extends Controller
 
             $credentials = request(['email', 'password']);
             if (!Auth::attempt($credentials)) {
-                //return $this->sendError('Unauthorized', 'Authentication Failed', 500);
-                return response()->json(['status' => false, 'data' => null, 'message' => 'Не удалось аутентифицировать пользователя']);
-
+                return $this->sendError('Несанкционированный доступ', 'Не удалось аутентифицировать пользователя', 500);
             }
 
             $user = User::where('email', $request->email)->first();
@@ -67,13 +66,16 @@ class AuthApiController extends Controller
             $data = [
                 'access_token' => $tokenResult,
                 'token_type' => 'Bearer',
-                'user' => $user
+                'user' => new UserResource($user)
             ];
 
-            return response()->json(['status' => true, 'data' => $data, 'message' => 'Аутентификация прошла успешно']);
+            return $this->sendResponse($data, 'Аутентификация прошла успешно');
 
         } catch (Exception $error) {
-            return response()->json(['status' => false, 'data' => null, 'message' => 'Не удалось аутентифицировать пользователя']);
+            return $this->sendError(
+                'Не удалось аутентифицировать пользователя',
+                $error->getMessage()
+            );
         }
     }
 

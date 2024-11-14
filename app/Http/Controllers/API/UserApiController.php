@@ -20,7 +20,7 @@ class UserApiController extends Controller
     {
         $users = User::all();
 
-        return response()->json(['status' => true, 'data' => UserResource::collection($users), 'message' => 'Пользователи получены успешно']);
+        return $this->sendResponse(UserResource::collection($users), 'Данные получены успешно');
     }
 
     /**
@@ -47,7 +47,7 @@ class UserApiController extends Controller
             'photo_profile' => $imageName,
         ]);
 
-        return response()->json(['status' => true, 'data' => new UserResource($user), 'message' => 'Пользователь сохранен успешно']);
+        return $this->sendResponse(new UserResource($user), 'Пользователь сохранен успешно');
     }
 
     /**
@@ -55,7 +55,7 @@ class UserApiController extends Controller
      */
     public function show(User $user)
     {
-        return response()->json(['status' => true, 'data' => new UserResource($user), 'message' => 'Пользователь показан успешно']);
+        return $this->sendResponse(new UserResource($user), 'Пользователь показан успешно');
     }
 
     /**
@@ -89,7 +89,7 @@ class UserApiController extends Controller
 
         $user->update();
 
-        return response()->json(['status' => true, 'data' => new UserResource($user), 'message' => 'Пользователь изменен успешно']);
+        return $this->sendResponse(new UserResource($user), 'Пользователь изменен успешно');
     }
 
     /**
@@ -108,7 +108,7 @@ class UserApiController extends Controller
 
             return response()->noContent()->with('danger', 'Пользователь удален!');
         } catch (Exception $e) {
-            return $e->getMessage();
+            return $this->sendError('Ошибка удаления', $e->getMessage());
         }
     }
 }

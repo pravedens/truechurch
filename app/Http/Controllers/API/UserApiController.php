@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class UserApiController extends Controller
     {
         $users = User::all();
 
-        return response()->json(['status' => true, 'data' => $users, 'message' => 'Пользователи получены успешно']);
+        return response()->json(['status' => true, 'data' => UserResource::collection($users), 'message' => 'Пользователи получены успешно']);
     }
 
     /**
@@ -46,7 +47,7 @@ class UserApiController extends Controller
             'photo_profile' => $imageName,
         ]);
 
-        return response()->json(['status' => true, 'data' => $user, 'message' => 'Пользователь сохранен успешно']);
+        return response()->json(['status' => true, 'data' => new UserResource($user), 'message' => 'Пользователь сохранен успешно']);
     }
 
     /**
@@ -54,7 +55,7 @@ class UserApiController extends Controller
      */
     public function show(User $user)
     {
-        return response()->json(['status' => true, 'data' => $user, 'message' => 'Пользователь показан успешно']);
+        return response()->json(['status' => true, 'data' => new UserResource($user), 'message' => 'Пользователь показан успешно']);
     }
 
     /**
@@ -88,7 +89,7 @@ class UserApiController extends Controller
 
         $user->update();
 
-        return response()->json(['status' => true, 'data' => $user, 'message' => 'Пользователь изменен успешно']);
+        return response()->json(['status' => true, 'data' => new UserResource($user), 'message' => 'Пользователь изменен успешно']);
     }
 
     /**

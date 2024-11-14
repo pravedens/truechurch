@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthApiController;
+use App\Http\Controllers\API\CategoryApiController;
 use App\Http\Controllers\API\UserApiController;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
@@ -18,3 +19,5 @@ Route::middleware('auth:sanctum')->group(function(){
 Route::post('register', [AuthApiController::class, 'register']);
 
 Route::post('login', [AuthApiController::class, 'login']);
+
+Route::get('categories', [CategoryApiController::class, 'index']);

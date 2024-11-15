@@ -11,7 +11,7 @@ class GroupApiController extends Controller
 {
     public function index(Request $request)
     {
-        $paginate = 15;
+        $paginate = 20;
         $groups = Group::when($request->search, function($query, $search) {
             $query->where('title', 'like', '%'. $search .'%');
         })->paginate($paginate);

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthApiController;
 use App\Http\Controllers\API\CategoryApiController;
+use App\Http\Controllers\API\ConferenceApiController;
 use App\Http\Controllers\API\GroupApiController;
 use App\Http\Controllers\API\UserApiController;
 use App\Http\Resources\UserResource;
@@ -24,3 +25,5 @@ Route::post('login', [AuthApiController::class, 'login']);
 Route::get('categories', [CategoryApiController::class, 'index']);
 
 Route::get('groups', [GroupApiController::class, 'index']);
+
+Route::get('conferences', [ConferenceApiController::class, 'index']);

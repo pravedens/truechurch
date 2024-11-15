@@ -21,7 +21,7 @@ class UserResource extends JsonResource
             'birthdate' => $this->birthdata,
             'church' => $this->church,
             'city' => $this->city,
-            'photo_profile' => $this->photo_profile,
+            'photo_profile' => asset('storage/images/'.$this->photo_profile),
             'roles' => $this->roles
         ];
     }

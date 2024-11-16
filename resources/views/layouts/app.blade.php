@@ -14,6 +14,18 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+        integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function() {
+            $("#date").mask("##.##.####", {
+                "placeholder": "dd.mm.yyyy"
+            });
+        });
+    </script>
 </head>
 
 <body class="bg-gray-50 transition-all duration-300 lg:hs-overlay-layout-open:ps-[260px] dark:bg-neutral-900">
@@ -32,17 +44,18 @@
         <main>
             <!-- Сообщение-->
             @if (session('success'))
-            <div class="p-4 mt-2 text-sm text-center text-teal-800 bg-teal-100 border border-teal-200 rounded-lg dark:bg-teal-800/10 dark:border-teal-900 dark:text-teal-500"
-                role="alert" tabindex="-1" aria-labelledby="hs-soft-color-success-label">
-                <span id="hs-soft-color-success-label" class="font-bold">{{ session('success') }}</span>
-            </div>
+                <div class="p-4 mt-2 text-sm text-center text-teal-800 bg-teal-100 border border-teal-200 rounded-lg dark:bg-teal-800/10 dark:border-teal-900 dark:text-teal-500"
+                    role="alert" tabindex="-1" aria-labelledby="hs-soft-color-success-label">
+                    <span id="hs-soft-color-success-label" class="font-bold">{{ session('success') }}</span>
+                </div>
             @endif
 
             @if (session('danger'))
-            <div class="p-4 mt-2 text-sm text-center text-red-800 bg-red-100 border border-red-200 rounded-lg dark:bg-red-800/10 dark:border-red-900 dark:text-red-500" role="alert" tabindex="-1" aria-labelledby="hs-soft-color-danger-label">
-                <span id="hs-soft-color-danger-label" class="font-bold">{{ session('danger') }}</span>
-              </div>
-              @endif
+                <div class="p-4 mt-2 text-sm text-center text-red-800 bg-red-100 border border-red-200 rounded-lg dark:bg-red-800/10 dark:border-red-900 dark:text-red-500"
+                    role="alert" tabindex="-1" aria-labelledby="hs-soft-color-danger-label">
+                    <span id="hs-soft-color-danger-label" class="font-bold">{{ session('danger') }}</span>
+                </div>
+            @endif
             <!-- Конец сообщению-->
             {{ $slot }}
         </main>

@@ -88,9 +88,10 @@
                                     Дата рождения
                                 </label>
 
-                                <input name="birthdate" id="af-submit-app-project-name" type="date"
+                                <input name="birthdate" id="date" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                     value="{{ $user->birthdate }}">
+                                    <span class="text-sm text-blue-400">Вводите дату без точек</span>
                             </div>
 
                             <div class="space-y-2">
@@ -123,7 +124,7 @@
 
                                 <input name="password" id="af-submit-app-project-name" type="password"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                    placeholder="Введите пароль">
+                                    value="{{ $user->password }}">
                                 <span class="text-sm text-red-400">Оставьте поле пустым, если не хотите
                                     менять пароль.</span>
                                 @error('password')

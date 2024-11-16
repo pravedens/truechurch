@@ -23,7 +23,7 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3',
-            'email' => 'required|unique:users,email,'.$this->user->id,
+            'email' => 'required|unique:users,email,'.$this->user?->id,
             'password' => 'required|min:8',
         ];
     }

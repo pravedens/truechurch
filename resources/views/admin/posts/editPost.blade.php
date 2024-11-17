@@ -1,8 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ $title }}
-        </h2>
+        <!-- Breadcrumb -->
+        <ol class="flex items-centerwhitespace-nowrap">
+            <li class="flex items-center text-sm text-gray-800">
+
+                {{ Breadcrumbs::render('postEdit', $post) }}
+
+            </li>
+        </ol>
+        <!-- End Breadcrumb -->
     </x-slot>
 
 
@@ -133,8 +139,7 @@
 
                                     <div class="mt-4 sm:mt-auto sm:mb-1.5 flex justify-center sm:justify-start gap-2">
                                         <img class="relative z-10 inline-block mx-auto -mt-8 rounded-full size-24 sm:mx-0 ring-4 ring-white dark:ring-neutral-900"
-                                            src="{{ asset('storage/posts/' . $post->thumbnail) }}"
-                                            alt="Avatar">
+                                            src="{{ asset('storage/posts/' . $post->thumbnail) }}" alt="Avatar">
                                         <input name="thumbnail" type="file"
                                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
                                         <!--<button type="button"

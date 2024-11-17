@@ -26,6 +26,15 @@
             });
         });
     </script>
+
+    <script src="https://cdn.tiny.cloud/1/lx2cguu49kwsoo3s3b15vbyqq3c2l94nt7bh83fh133ikxlv/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#description', // Replace this CSS selector to match the placeholder element for TinyMCE
+            plugins: 'code table lists',
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+        });
+    </script>
 </head>
 
 <body class="bg-gray-50 transition-all duration-300 lg:hs-overlay-layout-open:ps-[260px] dark:bg-neutral-900">

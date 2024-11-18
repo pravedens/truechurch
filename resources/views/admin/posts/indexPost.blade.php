@@ -1,16 +1,6 @@
 <x-app-layout>
-    <x-slot name="header">
-        <!-- Breadcrumb -->
-        <ol class="flex items-centerwhitespace-nowrap">
-            <li class="flex items-center text-sm text-gray-800">
 
-                {{ Breadcrumbs::render('post') }}
-
-            </li>
-        </ol>
-        <!-- End Breadcrumb -->
-    </x-slot>
-
+    {{ Breadcrumbs::render('post') }}
 
     <div class="mx-auto max-w-7xl sm:px-3 lg:px-3">
 
@@ -37,8 +27,7 @@
                                     <div class="inline-flex gap-x-2">
                                         <form method="GET" action="{{ route('posts.index') }}">
                                             <div class="max-w-sm space-y-3">
-                                                <input value="{{ request('search') }}" name="search"
-                                                    type="text"
+                                                <input value="{{ request('search') }}" name="search" type="text"
                                                     class="block w-full px-5 py-3 text-sm border-gray-200 rounded-full focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                     placeholder="Поиск">
                                             </div>
@@ -63,27 +52,27 @@
                             <!-- Table -->
                             <table class="min-w-full divide-y divide-gray-200">
                                 @if (count($posts) > 0)
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                    No
-                                                </span>
-                                            </div>
-                                        </th>
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-start">
+                                                <div class="flex items-center gap-x-2">
+                                                    <span
+                                                        class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                        No
+                                                    </span>
+                                                </div>
+                                            </th>
 
-                                        <th scope="col" class="px-6 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                    Название
-                                                </span>
-                                            </div>
-                                        </th>
+                                            <th scope="col" class="px-6 py-3 text-start">
+                                                <div class="flex items-center gap-x-2">
+                                                    <span
+                                                        class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                        Название
+                                                    </span>
+                                                </div>
+                                            </th>
 
-                                        <!--<th scope="col" class="px-6 py-3 text-start">
+                                            <!--<th scope="col" class="px-6 py-3 text-start">
                                             <div class="flex items-center gap-x-2">
                                                 <span
                                                     class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
@@ -92,45 +81,45 @@
                                             </div>
                                         </th>-->
 
-                                        <th scope="col" class="px-6 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                    Спикер
-                                                </span>
-                                            </div>
-                                        </th>
+                                            <th scope="col" class="px-6 py-3 text-start">
+                                                <div class="flex items-center gap-x-2">
+                                                    <span
+                                                        class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                        Спикер
+                                                    </span>
+                                                </div>
+                                            </th>
 
-                                        <th scope="col" class="px-6 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                    Год
-                                                </span>
-                                            </div>
-                                        </th>
+                                            <th scope="col" class="px-6 py-3 text-start">
+                                                <div class="flex items-center gap-x-2">
+                                                    <span
+                                                        class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                        Год
+                                                    </span>
+                                                </div>
+                                            </th>
 
-                                        <th scope="col" class="px-6 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                    Мероприятие
-                                                </span>
-                                            </div>
-                                        </th>
+                                            <th scope="col" class="px-6 py-3 text-start">
+                                                <div class="flex items-center gap-x-2">
+                                                    <span
+                                                        class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                        Мероприятие
+                                                    </span>
+                                                </div>
+                                            </th>
 
-                                        <th scope="col" class="px-4 py-3 text-start">
-                                            <div class="flex items-center gap-x-2">
-                                                <span
-                                                    class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                    Картинка
-                                                </span>
-                                            </div>
-                                        </th>
+                                            <th scope="col" class="px-4 py-3 text-start">
+                                                <div class="flex items-center gap-x-2">
+                                                    <span
+                                                        class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                        Картинка
+                                                    </span>
+                                                </div>
+                                            </th>
 
-                                        <th scope="col" class="px-6 py-3 text-end"></th>
-                                    </tr>
-                                </thead>
+                                            <th scope="col" class="px-6 py-3 text-end"></th>
+                                        </tr>
+                                    </thead>
                                 @endif
 
                                 <tbody class="divide-y divide-gray-200">
@@ -138,7 +127,8 @@
                                         <tr>
                                             <td class="h-px w-72 whitespace-nowrap">
                                                 <div class="px-6 py-3">
-                                                    <span class="block text-sm font-semibold text-gray-800">{{ $index+ $posts->firstItem() }}</span>
+                                                    <span
+                                                        class="block text-sm font-semibold text-gray-800">{{ $index + $posts->firstItem() }}</span>
                                                 </div>
                                             </td>
 
@@ -189,11 +179,14 @@
                                                         href="{{ route('posts.edit', $row->slug) }}">
                                                         Edit
                                                     </a>
-                                                    <form onsubmit="return confirm('Вы уверены, что хотите удалить эту публикацию ?')" method="post"
+                                                    <form
+                                                        onsubmit="return confirm('Вы уверены, что хотите удалить эту публикацию ?')"
+                                                        method="post"
                                                         action="{{ route('posts.destroy', $row->slug) }}">
                                                         @method('DELETE')
                                                         @csrf
-                                                        <button type="submit" class="inline-flex items-center text-sm font-medium text-red-600 gap-x-1 decoration-2 hover:underline focus:outline-none focus:underline"
+                                                        <button type="submit"
+                                                            class="inline-flex items-center text-sm font-medium text-red-600 gap-x-1 decoration-2 hover:underline focus:outline-none focus:underline"
                                                             href="{{ route('posts.edit', $row->slug) }}">
                                                             Delete
                                                         </button>
@@ -257,4 +250,3 @@
     </div>
 
 </x-app-layout>
-

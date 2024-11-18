@@ -1,17 +1,6 @@
 <x-app-layout>
 
-    <x-slot name="header">
-        <!-- Breadcrumb -->
-        <ol class="flex items-centerwhitespace-nowrap">
-            <li class="flex items-center text-sm text-gray-800">
-
-                {{ Breadcrumbs::render('user') }}
-
-            </li>
-        </ol>
-        <!-- End Breadcrumb -->
-    </x-slot>
-
+    {{ Breadcrumbs::render('user') }}
 
     <div class="mx-auto max-w-7xl sm:px-3 lg:px-3">
 
@@ -177,8 +166,7 @@
                                                     </a>
                                                     <form
                                                         onsubmit="return confirm('Вы уверены, что хотите удалить этого пользователя?')"
-                                                        method="post"
-                                                        action="{{ route('users.destroy', $row->id) }}">
+                                                        method="post" action="{{ route('users.destroy', $row->id) }}">
                                                         @method('DELETE')
                                                         @csrf
                                                         <button type="submit"

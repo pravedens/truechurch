@@ -1,5 +1,11 @@
 <?php // routes/breadcrumbs.php
 
+use App\Models\User;
+use App\Models\Post;
+use App\Models\Category;
+use App\Models\Conference;
+use App\Models\Group;
+
 // Note: Laravel will automatically resolve `Breadcrumbs::` without
 // this import. This is nice for IDE syntax and refactoring.
 use Diglactic\Breadcrumbs\Breadcrumbs;
@@ -19,7 +25,7 @@ Breadcrumbs::for('user', function (BreadcrumbTrail $trail) {
 });
 
 // User > [User]
-Breadcrumbs::for('userEdit', function (BreadcrumbTrail $trail, $user) {
+Breadcrumbs::for('userEdit', function (BreadcrumbTrail $trail, User $user) {
     $trail->parent('user');
     $trail->push($user->name, route('users.edit', $user));
 });
@@ -30,7 +36,7 @@ Breadcrumbs::for('post', function (BreadcrumbTrail $trail) {
 });
 
 // Post > [Post]
-Breadcrumbs::for('postEdit', function (BreadcrumbTrail $trail, $post) {
+Breadcrumbs::for('postEdit', function (BreadcrumbTrail $trail, Post $post) {
     $trail->parent('post');
     $trail->push($post->title, route('posts.edit', $post));
 });
@@ -41,7 +47,7 @@ Breadcrumbs::for('category', function (BreadcrumbTrail $trail) {
 });
 
 // Category > [Category]
-Breadcrumbs::for('categoryEdit', function (BreadcrumbTrail $trail, $category) {
+Breadcrumbs::for('categoryEdit', function (BreadcrumbTrail $trail, Category $category) {
     $trail->parent('category');
     $trail->push($category->title, route('categories.edit', $category));
 });
@@ -52,7 +58,7 @@ Breadcrumbs::for('conference', function (BreadcrumbTrail $trail) {
 });
 
 // Conference > [Conference]
-Breadcrumbs::for('conferenceEdit', function (BreadcrumbTrail $trail, $conference) {
+Breadcrumbs::for('conferenceEdit', function (BreadcrumbTrail $trail, Conference $conference) {
     $trail->parent('conference');
     $trail->push($conference->title, route('conferences.edit', $conference));
 });
@@ -63,7 +69,7 @@ Breadcrumbs::for('group', function (BreadcrumbTrail $trail) {
 });
 
 // Group > [Group]
-Breadcrumbs::for('groupEdit', function (BreadcrumbTrail $trail, $group) {
+Breadcrumbs::for('groupEdit', function (BreadcrumbTrail $trail, Group $group) {
     $trail->parent('group');
     $trail->push($group->title, route('groups.edit', $group));
 });

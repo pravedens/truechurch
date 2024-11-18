@@ -1,15 +1,6 @@
 <x-app-layout>
-    <x-slot name="header">
-        <!-- Breadcrumb -->
-        <ol class="flex items-centerwhitespace-nowrap">
-            <li class="flex items-center text-sm text-gray-800">
 
-                {{ Breadcrumbs::render('dashboard') }}
-
-            </li>
-        </ol>
-        <!-- End Breadcrumb -->
-    </x-slot>
+    {{ Breadcrumbs::render('dashboard') }}
 
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">

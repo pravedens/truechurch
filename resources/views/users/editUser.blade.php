@@ -1,16 +1,6 @@
 <x-app-layout>
-    <x-slot name="header">
-        <!-- Breadcrumb -->
-        <ol class="flex items-centerwhitespace-nowrap">
-            <li class="flex items-center text-sm text-gray-800">
 
-                {{ Breadcrumbs::render('userEdit', $user) }}
-
-            </li>
-        </ol>
-        <!-- End Breadcrumb -->
-    </x-slot>
-
+    {{ Breadcrumbs::render('userEdit', $user) }}
 
     <div class="mx-auto max-w-7xl sm:px-3 lg:px-3">
         <!-- Card Section -->
@@ -97,7 +87,7 @@
                                 <input name="birthdate" id="date" type="text"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                     value="{{ $user->birthdate }}">
-                                    <span class="text-sm text-blue-400">Вводите дату без точек</span>
+                                <span class="text-sm text-blue-400">Вводите дату без точек</span>
                             </div>
 
                             <div class="space-y-2">

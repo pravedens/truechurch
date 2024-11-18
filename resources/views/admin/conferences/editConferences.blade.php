@@ -1,8 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ $title }}
-        </h2>
+        <!-- Breadcrumb -->
+        <ol class="flex items-centerwhitespace-nowrap">
+            <li class="flex items-center text-sm text-gray-800">
+
+                {{ Breadcrumbs::render('conferenceEdit', $conference) }}
+
+            </li>
+        </ol>
+        <!-- End Breadcrumb -->
     </x-slot>
 
 

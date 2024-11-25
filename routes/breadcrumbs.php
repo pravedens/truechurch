@@ -13,6 +13,7 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 // This import is also not required, and you could replace `BreadcrumbTrail $trail`
 //  with `$trail`. This is nice for IDE type checking and completion.
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
+use Spatie\Permission\Models\Role;
 
 // Home
 Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
@@ -28,6 +29,17 @@ Breadcrumbs::for('user', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('userEdit', function (BreadcrumbTrail $trail, User $user) {
     $trail->parent('user');
     $trail->push($user->name, route('users.edit', $user));
+});
+
+// Home > Roles
+Breadcrumbs::for('role', function (BreadcrumbTrail $trail) {
+    $trail->push('Роль', route('roles.index'));
+});
+
+// User > [User]
+Breadcrumbs::for('rolesEdit', function (BreadcrumbTrail $trail, Role $role) {
+    $trail->parent('role');
+    $trail->push($role->name, route('roles.edit', $role));
 });
 
 // Home > Post

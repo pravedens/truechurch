@@ -74,6 +74,9 @@
                             </x-nav-link>
                         </li>
 
+                        <li class='text-gray-400 text-[14px] ml-2'>Авторизация</li>
+                        <hr class='w-1/2 mt-1 ml-2 text-gray-400 opacity-30'>
+
                         <li>
                             <x-nav-link :href="route('users.index')" :active="request()->routeIs(['users.index', 'users.show', 'users.create'])">
                                 <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -87,6 +90,35 @@
                                 User
                             </x-nav-link>
                         </li>
+
+                        <li>
+                            <x-nav-link :href="route('roles.index')" :active="request()->routeIs(['roles.index', 'roles.show', 'roles.create'])">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="flex-shrink-0 size-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672ZM12 2.25V4.5m5.834.166-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243-1.59-1.59" />
+                                </svg>
+                                Роль
+                            </x-nav-link>
+                        </li>
+
+                        <li>
+                            <x-nav-link :href="route('permissions.index')" :active="request()->routeIs([
+                                'permissions.index',
+                                'permissions.show',
+                                'permissions.create',
+                            ])">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="flex-shrink-0 size-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                </svg>
+                                Привилегии
+                            </x-nav-link>
+                        </li>
+
+                        <li class='text-gray-400 text-[14px] ml-2'>Публикации</li>
+                        <hr class='w-1/2 mt-1 ml-2 text-gray-400 opacity-30'>
 
                         <li class="hs-accordion" id="projects-accordion">
                             <button type="button"
@@ -137,7 +169,12 @@
                                         </x-nav-link>
                                     </li>
                                     <li>
-                                        <x-nav-link :href="route('groups.index')" :active="request()->routeIs(['groups.index', 'groups.show', 'groups.create', 'groups.edit'])"
+                                        <x-nav-link :href="route('groups.index')" :active="request()->routeIs([
+                                            'groups.index',
+                                            'groups.show',
+                                            'groups.create',
+                                            'groups.edit',
+                                        ])"
                                             class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -166,7 +203,12 @@
                                         </x-nav-link>
                                     </li>
                                     <li>
-                                        <x-nav-link :href="route('posts.index')" :active="request()->routeIs(['posts.index', 'posts.show', 'posts.create', 'posts.edit'])"
+                                        <x-nav-link :href="route('posts.index')" :active="request()->routeIs([
+                                            'posts.index',
+                                            'posts.show',
+                                            'posts.create',
+                                            'posts.edit',
+                                        ])"
                                             class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"

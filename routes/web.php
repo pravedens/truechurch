@@ -3,8 +3,10 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConferenceController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +28,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->group(function(){
     //Page User
     Route::resource('users', UserController::class);
+    Route::resource('roles', RolesController::class);
+    Route::resource('permissions', PermissionController::class);
     Route::resource('categories', CategoryController::class)->parameters(['categories' => 'category:slug']);
     Route::resource('posts', PostController::class)->parameters(['posts' => 'post:slug']);
     Route::resource('groups', GroupController::class)->parameters(['groups' => 'group:slug']);

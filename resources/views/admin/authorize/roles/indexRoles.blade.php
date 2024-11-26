@@ -124,7 +124,7 @@
                                                         Edit
                                                     </a>
                                                     <form
-                                                        onsubmit="return confirm('Вы уверены, что хотите удалить этого спикера?')"
+                                                        onsubmit="return confirm('Вы уверены, что хотите удалить эту роль?')"
                                                         method="post" action="{{ route('roles.destroy', $row->id) }}">
                                                         @method('DELETE')
                                                         @csrf

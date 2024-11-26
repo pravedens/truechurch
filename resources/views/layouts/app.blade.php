@@ -69,7 +69,7 @@
             {{ $slot }}
         </main>
     </div>
-    <!--<script src="./node_modules/preline/dist/preline.js"></script>-->
+    @stack('scriptselect2')
 </body>
 
 </html>

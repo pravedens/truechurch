@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
@@ -29,6 +30,25 @@ class RolesController extends Controller
         ]);
 
         return redirect()->route('roles.index')->with('success', 'Роль добавлена');
+    }
+
+    public function edit(Role $role)
+    {
+        $permissions = Permission::all();
+        return view('admin.authorize.roles.editRoles', compact('role', 'permissions'));
+    }
+
+    public function update(Request $request, Role $role)
+    {
+        $role->update([
+            'name' => $request->role
+        ]);
+
+        $permissions = Permission::whereIn('id', $request->permissions)->pluck('name');
+
+        $role->syncPermissions($permissions);
+
+        return redirect()->route('roles.index')->with('success', 'Роль изменена');
     }
 
     public function destroy(String $id)

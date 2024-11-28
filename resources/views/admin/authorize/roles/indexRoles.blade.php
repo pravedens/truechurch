@@ -85,7 +85,7 @@
                                                 <div class="flex gap-x-2">
                                                     <span
                                                         class="mr-4 text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                        Total Permissions
+                                                        Привилегий
                                                     </span>
                                                 </div>
                                             </th>
@@ -113,7 +113,16 @@
 
                                             <td class="h-px w-72 whitespace-nowrap">
                                                 <div class="px-6 py-3">
-                                                    <span class="block text-sm font-semibold text-gray-800"></span>
+                                                    <span class="block text-sm font-semibold text-gray-800">
+                                                        {{ $row->permissions->count() }}
+
+                                                        {{-- закоментировано
+                                                        @foreach ($row->permissions as $permission)
+                                                            {{ $permission->name }}
+                                                        @endforeach
+                                                        --}}
+                                                        
+                                                    </span>
                                                 </div>
                                             </td>
 

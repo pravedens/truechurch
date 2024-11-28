@@ -42,4 +42,22 @@ class PermissionController extends Controller
 
         return redirect()->route('permissions.index')->with('success', 'Привилегия создана успешно');
     }
+
+    public function update(Request $request, Permission $permission)
+    {
+        $permission->update([
+            'name' => $request->permission
+        ]);
+
+        $permission->syncRoles($request->roles);
+
+        return redirect()->route('permissions.index')->with('success', 'Привилегия изменена');
+    }
+
+    public function destroy(Permission $permission)
+    {
+        $permission->delete();
+
+        return redirect()->route('permissions.index')->with('danger', 'Привилегия удалена');
+    }
 }

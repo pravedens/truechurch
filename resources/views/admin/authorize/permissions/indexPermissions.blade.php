@@ -141,9 +141,9 @@
                 <div class="mb-8 text-center">
                     <h2 class="text-xl font-semibold text-gray-800 dark:text-neutral-200">
                         @if ($edit)
-                            Edit Permission
+                            Изменение привилегии
                         @else
-                            Form Permission
+                            Добавление привилегии
                         @endif
                     </h2>
                     <p class="text-sm text-gray-600 dark:text-neutral-400">
@@ -191,12 +191,12 @@
                     @if ($edit)
                         <button type="submit"
                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-yellow-600 border border-transparent rounded-lg gap-x-2 hover:bg-yellow-700 focus:outline-none focus:bg-yellow-700 disabled:opacity-50 disabled:pointer-events-none">
-                            Update
+                            Изменить
                         </button>
                     @else
                         <button type="submit"
                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg gap-x-2 hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
-                            Save
+                            Сохранить
                         </button>
                     @endif
                 </div>

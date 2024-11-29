@@ -81,6 +81,23 @@
                             <div class="space-y-2">
                                 <label for="af-submit-project-url"
                                     class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    Роль
+                                </label>
+
+                                <select required name="roles[]" multiple id="af-submit-app-category"
+                                    class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-9 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->name }}" {{ in_array($role->name, $dataRoles) ? 'selected' : '' }}>{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('roles')
+                                    <span class="text-sm text-red-400">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="af-submit-project-url"
+                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
                                     Дата рождения
                                 </label>
 

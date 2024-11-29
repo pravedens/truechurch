@@ -114,14 +114,14 @@
                                             <td class="h-px w-72 whitespace-nowrap">
                                                 <div class="px-6 py-3">
                                                     <span class="block text-sm font-semibold text-gray-800">
-                                                        {{ $row->permissions->count() }}
-
                                                         {{-- закоментировано
-                                                        @foreach ($row->permissions as $permission)
-                                                            {{ $permission->name }}
-                                                        @endforeach
+                                                        {{ $row->permissions->count() }}
                                                         --}}
-                                                        
+                                                        @foreach ($row->permissions as $permission)
+                                                            <span
+                                                                class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">{{ $permission->name ?? '-' }}</span>
+                                                        @endforeach
+
                                                     </span>
                                                 </div>
                                             </td>

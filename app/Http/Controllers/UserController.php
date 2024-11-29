@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -32,8 +33,9 @@ class UserController extends Controller
     public function create()
     {
         $title = 'Create User';
+        $roles = Role::all();
 
-        return view('users.formUser', compact('title'));
+        return view('users.formUser', compact('title', 'roles'));
     }
 
     /**
@@ -50,7 +52,7 @@ class UserController extends Controller
             $request->photo->storeAs('public/images', $imageName);
         }
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -59,6 +61,8 @@ class UserController extends Controller
             'city' => $request->city,
             'photo_profile' => $imageName,
         ]);
+
+        $user->assignRole($request->roles);
 
         return redirect()->route('users.index')->with('success', 'Пользователь добавлен!');
     }
@@ -77,8 +81,10 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $title = 'Edit User';
+        $roles = Role::all();
+        $dataRoles = $user->roles->pluck('name')->toArray();
 
-        return view('users.editUser', compact('user', 'title'));
+        return view('users.editUser', compact('user', 'title', 'roles', 'dataRoles'));
     }
 
     /**
@@ -111,6 +117,8 @@ class UserController extends Controller
         $user->city = $request->city;
 
         $user->update();
+
+        $user->syncRoles($request->roles);
 
         return redirect()->route('users.index')->with('success', 'Данные пользователя изменены!');
     }

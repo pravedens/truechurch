@@ -82,6 +82,15 @@
                                             </th>
 
                                             <th scope="col" class="px-6 py-3 text-start">
+                                                <div class="flex items-center ml-5 gap-x-2">
+                                                    <span
+                                                        class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                                                        Роль
+                                                    </span>
+                                                </div>
+                                            </th>
+
+                                            <th scope="col" class="px-6 py-3 text-start">
                                                 <div class="flex items-center gap-x-2">
                                                     <span
                                                         class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
@@ -138,6 +147,15 @@
                                                 <div class="px-6 py-3 ml-4 ">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800">{{ $row->email }}</span>
+                                                </div>
+                                            </td>
+                                            <td class="h-px w-72 whitespace-nowrap">
+                                                <div class="px-6 py-3 ml-4 ">
+                                                    <span class="block text-sm font-semibold text-gray-800">
+                                                        @foreach ($row->roles as $role)
+                                                            {{ $role->name }}
+                                                        @endforeach
+                                                    </span>
                                                 </div>
                                             </td>
                                             <td class="h-px w-72 whitespace-nowrap">

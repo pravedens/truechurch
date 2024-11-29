@@ -21,7 +21,7 @@ class Admin
             return redirect()->route('login');
         }
 
-        $userRoles = Auth::user()->roles;
+        $userRoles = Auth::user()->role;
 
         if($userRoles == 1)
         {

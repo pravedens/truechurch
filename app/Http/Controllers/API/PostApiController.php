@@ -11,7 +11,7 @@ class PostApiController extends Controller
 {
     public function index(Request $request)
     {
-        $paginate = 15;
+        $paginate = 20;
         $posts = Post::when($request, function ($query) use ($request) {
             if ($request->search) {
                 $query->where('title', 'like', '%'.$request->search.'%');
@@ -19,13 +19,13 @@ class PostApiController extends Controller
             if ($request->category) {
                 $query->where('category_id', $request->category);
             }
-            if ($request->groups) {
+            if ($request->group) {
                 $query->where('group_id', $request->group);
             }
-            if ($request->conferences) {
+            if ($request->conference) {
                 $query->where('conference_id', $request->conference);
             }
-        })->paginate($paginate);
+        })->with('category', 'group', 'conference')->orderBy('postDate', 'desc')->paginate($paginate);
 
         return $this->sendResponse(PostResource::collection($posts)->resource, 'Публикация получена успешно', 200);
     }

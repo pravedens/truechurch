@@ -22,7 +22,7 @@ class PostController extends Controller
     {
         $posts = Post::when($request->search, function($query) use($request){
             $query->where('title', 'like', '%'.$request->search.'%');
-        })->paginate(20)->appends(['search' => $request->search]);
+        })->paginate(50)->appends(['search' => $request->search]);
 
         return view('admin.posts.indexPost', compact('posts'));
     }
@@ -52,7 +52,8 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|min:3',
             'description' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'postDate' => 'required'
         ]);
 
         $ThumbnailPost = null;
@@ -75,6 +76,7 @@ class PostController extends Controller
             'group_id' => $request->group,
             'conference_id' => $request->conference,
             'user_id' => Auth::user()->id,
+            'postDate' => $request->postDate
         ]);
 
         return redirect()->route('posts.index')->with('success', 'Публикация добавлена!');

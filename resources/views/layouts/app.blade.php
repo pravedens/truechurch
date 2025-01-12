@@ -21,7 +21,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(document).ready(function() {
-            $("#date").mask("##.##.####", {
+            $("#date").mask("##.##.#### ##:##", {
                 "placeholder": "dd.mm.yyyy"
             });
         });

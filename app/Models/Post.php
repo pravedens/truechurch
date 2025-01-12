@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -29,5 +30,7 @@ class Post extends Model
     {
         return $this->belongsTo(Conference::class, 'conference_id', 'id');
     }
+
+    public $timestamps = FALSE;
 }
 

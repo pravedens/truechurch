@@ -43,7 +43,7 @@
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-9 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
                                     <option selected>Выберите спикера</option>
                                     @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -58,9 +58,19 @@
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-9 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
                                     <option selected>Выберите год</option>
                                     @foreach ($groups as $group)
-                                    <option value="{{ $group->id }}">{{ $group->title }}</option>
+                                        <option value="{{ $group->id }}">{{ $group->title }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="postDate" class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    Дата
+                                </label>
+
+                                <input name="postDate" id="date" type="text"
+                                    class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+                                <span class="text-sm text-blue-400">Вводите дату без точек</span>
                             </div>
 
                             <div class="space-y-2">
@@ -73,7 +83,7 @@
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-9 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
                                     <option selected>Выберите мероприятие</option>
                                     @foreach ($conferences as $conference)
-                                    <option value="{{ $conference->id }}">{{ $conference->title }}</option>
+                                        <option value="{{ $conference->id }}">{{ $conference->title }}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -26,7 +26,8 @@ class PostResource extends JsonResource
             'dzen' => $this->dzen,
             'category_id' => $this->category_id,
             'group_id' => $this->group_id,
-            'conference_id' => $this->conference_id
+            'conference_id' => $this->conference_id,
+            'postDate' => $this->postDate,
         ];
     }
 }

@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Conference;
 use App\Models\Group;
+use App\Models\Post;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -20,7 +19,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::when($request->search, function($query) use($request){
+        $posts = Post::with('category')->get()->when($request->search, function ($query) use ($request) {
             $query->where('title', 'like', '%'.$request->search.'%');
         })->paginate(50)->appends(['search' => $request->search]);
 
@@ -53,7 +52,6 @@ class PostController extends Controller
             'title' => 'required|min:3',
             'description' => 'required',
             'content' => 'required',
-            'postDate' => 'required'
         ]);
 
         $ThumbnailPost = null;
@@ -76,7 +74,7 @@ class PostController extends Controller
             'group_id' => $request->group,
             'conference_id' => $request->conference,
             'user_id' => Auth::user()->id,
-            'postDate' => $request->postDate
+            'created_at' => $request->created_at->getPostDate(),
         ]);
 
         return redirect()->route('posts.index')->with('success', 'Публикация добавлена!');
@@ -114,7 +112,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|min:3',
             'description' => 'required',
-            'content' => 'required'
+            'content' => 'required',
         ]);
 
         $ThumbnailPost = null;
@@ -132,15 +130,16 @@ class PostController extends Controller
             $post->thumbnail = $ThumbnailPost;
         }
 
-            $post->title = $request->title;
-            $post->slug = Str::slug($request->title);
-            $post->description = $request->description;
-            $post->content = $request->content;
-            $post->youtube = $request->youtube;
-            $post->rutube = $request->rutube;
-            $post->dzen = $request->dzen;
+        $post->title = $request->title;
+        $post->slug = Str::slug($request->title);
+        $post->description = $request->description;
+        $post->content = $request->content;
+        $post->youtube = $request->youtube;
+        $post->rutube = $request->rutube;
+        $post->dzen = $request->dzen;
+        $post->created_at = $request->created_at;
 
-            $post->update();
+        $post->update();
 
         return redirect()->route('posts.index')->with('success', 'Публикация изменена!');
     }

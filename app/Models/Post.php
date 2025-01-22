@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Post extends Model
 {
-    use HasFactory, HasApiTokens;
+    use HasApiTokens, HasFactory;
 
     protected $guarded = [];
 
@@ -31,6 +31,11 @@ class Post extends Model
         return $this->belongsTo(Conference::class, 'conference_id', 'id');
     }
 
+    public function getPostDate()
+    {
+        $date = $this->created_at;
+        return Carbon::parse($date)->format('d.m.Y');
+    }
+
     public $timestamps = FALSE;
 }
-

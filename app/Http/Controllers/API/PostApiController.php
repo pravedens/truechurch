@@ -25,7 +25,7 @@ class PostApiController extends Controller
             if ($request->conference) {
                 $query->where('conference_id', $request->conference);
             }
-        })->with('category', 'group', 'conference')->orderBy('postDate', 'desc')->paginate($paginate);
+        })->with('category', 'group', 'conference')->orderBy('created_at', 'desc')->paginate($paginate);
 
         return $this->sendResponse(PostResource::collection($posts)->resource, 'Публикация получена успешно', 200);
     }

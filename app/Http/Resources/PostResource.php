@@ -24,10 +24,10 @@ class PostResource extends JsonResource
             'youtube' => $this->youtube,
             'rutube' => $this->rutube,
             'dzen' => $this->dzen,
-            'category_id' => $this->category_id,
+            'category' => new CategoryResource($this->category),
             'group_id' => $this->group_id,
             'conference_id' => $this->conference_id,
-            'postDate' => $this->postDate,
+            'created_at' => $this->getPostDate(),
         ];
     }
 }

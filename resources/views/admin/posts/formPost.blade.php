@@ -64,13 +64,12 @@
                             </div>
 
                             <div class="space-y-2">
-                                <label for="postDate" class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                <label for="created_at" class="inline-block text-sm font-medium text-gray-800 mt-2.5">
                                     Дата
                                 </label>
 
-                                <input name="postDate" id="date" type="text"
+                                <input name="created_at" id="created_at" type="date"
                                     class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
-                                <span class="text-sm text-blue-400">Вводите дату без точек</span>
                             </div>
 
                             <div class="space-y-2">

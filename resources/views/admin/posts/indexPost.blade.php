@@ -94,7 +94,7 @@
                                                 <div class="flex items-center gap-x-2">
                                                     <span
                                                         class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-                                                        Год
+                                                        Дата
                                                     </span>
                                                 </div>
                                             </th>
@@ -155,7 +155,7 @@
                                             <td class="h-px w-72 whitespace-nowrap">
                                                 <div class="px-6 py-3">
                                                     <span
-                                                        class="block text-sm font-semibold text-gray-800">{{ $row->group->title }}</span>
+                                                        class="block text-sm font-semibold text-gray-800">{{ $row->getPostDate() }}</span>
                                                 </div>
                                             </td>
                                             <td class="h-px w-72 whitespace-nowrap">

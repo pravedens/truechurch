@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::with('category')->get()->when($request->search, function ($query) use ($request) {
+        $posts = Post::when($request->search, function ($query) use ($request) {
             $query->where('title', 'like', '%'.$request->search.'%');
         })->paginate(50)->appends(['search' => $request->search]);
 
